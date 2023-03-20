@@ -15,6 +15,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@mobily/ts-belt": "^3.13.1",
     "@storybook/addon-essentials": "^7.0.0-rc.5",
     "@storybook/addon-interactions": "^7.0.0-rc.5",
     "@storybook/addon-links": "^7.0.0-rc.5",

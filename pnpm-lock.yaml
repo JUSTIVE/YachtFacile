@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@mobily/ts-belt': ^3.13.1
   '@storybook/addon-essentials': ^7.0.0-rc.5
   '@storybook/addon-interactions': ^7.0.0-rc.5
   '@storybook/addon-links': ^7.0.0-rc.5
@@ -24,6 +25,7 @@ dependencies:
   react-dom: 18.2.0_react@18.2.0
 
 devDependencies:
+  '@mobily/ts-belt': 3.13.1
   '@storybook/addon-essentials': 7.0.0-rc.5_biqbaboplfbrettd7655fr4n2y
   '@storybook/addon-interactions': 7.0.0-rc.5_biqbaboplfbrettd7655fr4n2y
   '@storybook/addon-links': 7.0.0-rc.5_biqbaboplfbrettd7655fr4n2y
@@ -1897,6 +1899,11 @@ packages:
       '@types/mdx': 2.0.3
       '@types/react': 18.0.28
       react: 18.2.0
+    dev: true
+
+  /@mobily/ts-belt/3.13.1:
+    resolution: {integrity: sha512-K5KqIhPI/EoCTbA6CGbrenM9s41OouyK8A03fGJJcla/zKucsgLbz8HNbeseoLarRPgyWJsUyCYqFhI7t3Ra9Q==}
+    engines: {node: '>= 10.*'}
     dev: true
 
   /@ndelangen/get-tarball/3.0.7:
