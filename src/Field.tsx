@@ -79,18 +79,18 @@ export const Field = () => {
       <Canvas shadows={'soft'} orthographic camera={{ zoom: 20, near: -100, far: 100, position: [2, 2, 2] }}>
         <color attach='background' args={['#222']} />
         <ambientLight intensity={0.1} />
-        <directionalLight color='white' position={[0, 4, 8]} castShadow />
-        <directionalLight color='white' position={[4, 4, -6]} castShadow />
-        <directionalLight color='white' position={[-4, 4, -6]} castShadow />
-        <Physics>
+        <directionalLight color={'#efefff'} position={[0, 4, 8]} castShadow />
+        <directionalLight color={'#efefff'} position={[4, 4, -6]} castShadow />
+        <directionalLight color={'#efefff'} position={[-4, 4, -6]} castShadow />
+        <Physics gravity={[0, -39.2, 0]}>
           {/* <Debug> */}
           <DiceBox />
           {Array.from({ length: 5 }).map((_, i) => (
-            <DiceRenderer position={[0, i * 3 + 2, 0]} key={`${i}-dice`} />
+            <DiceRenderer position={[0, i * 3 + 12, 0]} key={`${i}-dice`} />
           ))}
           {/* </Debug> */}
         </Physics>
-        <OrbitControls enableDamping={false} />
+        {/* <OrbitControls enableDamping={false} /> */}
 
         <Stats />
 

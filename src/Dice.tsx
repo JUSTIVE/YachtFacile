@@ -1,15 +1,18 @@
 import React, { useEffect, useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { useBox } from '@react-three/cannon'
+import { ACLAtom } from './atom/acl'
+import { useSetRecoilState } from 'recoil'
 
 export const DiceRenderer = (props) => {
   const aclRef = useRef(null)
   const posval = useRef(null)
   const { nodes, materials } = useGLTF('/dice.glb')
+  const setACLAtom = useSetRecoilState(ACLAtom)
   // console.log(nodes, materials)
 
   const [ref, api] = useBox(() => ({
-    mass: 50,
+    mass: 1,
     args: [2, 2, 2],
     ...props
   }))
@@ -21,9 +24,9 @@ export const DiceRenderer = (props) => {
   }
 
   useEffect(() => {
-    api.velocity.set(randomForce(), 0, randomForce())
-    api.angularVelocity.set(randomForce(), randomForce(), randomForce())
-
+    // api.velocity.set(randomForce(), 0, randomForce())
+    // api.angularVelocity.set(randomForce(), randomForce(), randomForce())
+    // console.log(api)
     // api.torque.set(randomForce(), randomForce(), randomForce())
   }, [api, aclRef.current])
 
@@ -38,12 +41,14 @@ export const DiceRenderer = (props) => {
       }
     }
   }, [])
-
   useEffect(() => {
+    const damper = 1
     if (!aclRef.current) return
 
     aclRef.current.onreading = (e) => {
-      console.log(e), (posval.current = e)
+      console.log(e)
+      setACLAtom([e.target.x, e.target.y, e.target.z])
+      api.applyLocalForce([e.target.x * damper, e.target.y * damper * 10, e.target.z * damper], [0, 0, 0])
     }
     aclRef.current.start()
   }, [aclRef.current])
