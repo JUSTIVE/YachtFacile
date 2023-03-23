@@ -1,20 +1,24 @@
+import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { useTrimesh } from '@react-three/cannon'
 
 export const DiceRenderer = (props) => {
   const { nodes, materials } = useGLTF('/dice.glb')
-  const [ref] = useTrimesh(() => ({
-    args: [nodes.Cube001.geometry.attributes.position.array, nodes.Cube001.geometry.index.array],
-    mass: 1,
-    position: [0, 5, 0],
-    ...props
-  }))
-  // console.log(nodes, materials)
+  console.log(nodes, materials)
+
+  const [ref] = useTrimesh(
+    () => ({
+      args: [nodes.Object_2.geometry.attributes.position.array, nodes.Object_2.geometry.index.array],
+      mass: 5,
+      position: [0, 5, 0],
+      ...props
+    }),
+    useRef()
+  )
 
   return (
     <group ref={ref}>
-      <mesh geometry={nodes.Cube001.geometry} material={materials.main_clr} />
-      <mesh geometry={nodes.Cube001_1.geometry} material={materials.white} />
+      <mesh castShadow geometry={nodes.Object_2.geometry} material={materials.default} />
     </group>
   )
 }
