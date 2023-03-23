@@ -2,7 +2,7 @@ import React from 'react'
 import { Canvas } from '@react-three/fiber'
 import { DiceRenderer } from './Dice'
 import { Physics, Debug } from '@react-three/cannon'
-import { Stats } from '@react-three/drei'
+import { Stats, OrbitControls } from '@react-three/drei'
 import { EffectComposer, DepthOfField } from '@react-three/postprocessing'
 import { DoubleSide } from 'three'
 import { usePlane } from '@react-three/cannon'
@@ -11,8 +11,8 @@ const GreenSquare = (props) => {
   const [ref] = usePlane(() => ({ mass: 0, ...props }))
   return (
     <mesh ref={ref} position={[0, 0, 0]} scale={[15, 15, 0]} receiveShadow>
-      <planeBufferGeometry />
-      <meshBasicMaterial color='green' side={DoubleSide} />
+      <planeBufferGeometry args={[25, 25]} />
+      <meshBasicMaterial side={DoubleSide} color={'white'} />
     </mesh>
   )
 }
@@ -20,19 +20,21 @@ const GreenSquare = (props) => {
 export const Field = () => {
   return (
     <div id='canvas-container' style={{ width: '100vw', height: '500px' }}>
-      <Canvas shadows orthographic camera={{ zoom: 30, near: -100, far: 100, position: [2, 2, 2] }}>
+      <Canvas shadows={'soft'} orthographic camera={{ zoom: 30, near: -100, far: 100, position: [2, 2, 2] }}>
+        <color attach='background' args={['#222']} />
         <ambientLight intensity={0.1} />
-        <directionalLight color='white' position={[0, 4, 8]} />
-        <directionalLight color='white' position={[4, 4, -6]} />
-        <directionalLight color='white' position={[-4, 4, -6]} />
+        <directionalLight color='white' position={[0, 4, 8]} castShadow />
+        {/* <directionalLight color='white' position={[4, 4, -6]} castShadow />
+        <directionalLight color='white' position={[-4, 4, -6]} castShadow /> */}
         <Physics>
-          <Debug>
-            <GreenSquare rotation={[-Math.PI / 2, 0, 0]} receiveShadow />
-            {Array.from({ length: 5 }).map((_, i) => (
-              <DiceRenderer position={[0, i * 3 + 2, 0]} key={`${i}`} />
-            ))}
-          </Debug>
+          {/* <Debug> */}
+          <GreenSquare rotation={[-Math.PI / 2, 0, 0]} />
+          {Array.from({ length: 5 }).map((_, i) => (
+            <DiceRenderer position={[0, i * 3 + 2, 0]} key={`${i}-dice`} />
+          ))}
+          {/* </Debug> */}
         </Physics>
+        <OrbitControls enableDamping={false} />
 
         <Stats />
 
