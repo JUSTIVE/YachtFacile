@@ -11,7 +11,7 @@ import { DiceRenderer } from './Dice'
 export const Field = () => {
   return (
     <div id='canvas-container' style={{ width: '100vw', height: '500px' }}>
-      <Canvas shadows={'soft'} orthographic camera={{ zoom: 20, near: -100, far: 100, position: [2, 2, 2] }}>
+      <Canvas shadows={'soft'} orthographic camera={{ zoom: 20, near: -100, far: 100, position: [2, 2, 0] }}>
         <color attach='background' args={['#222']} />
         <ambientLight intensity={0.1} />
         <directionalLight color={'#efefff'} position={[0, 4, 8]} castShadow />
@@ -21,12 +21,12 @@ export const Field = () => {
           {/* <Debug> */}
           <DiceBox />
           {Array.from({ length: 5 }).map((_, i) => (
-            <DiceRenderer position={[0, i * 3 + 12, 0]} key={`${i}-dice`} />
+            <DiceRenderer position={[Math.random()*5, 3, Math.random()*5]} key={`${i}-dice`} />
           ))}
           {/* <SphereRenderer position={[0, 5, 0]} /> */}
           {/* </Debug> */}
         </Physics>
-        {/* <OrbitControls enableDamping={false} /> */}
+        <OrbitControls enableDamping={false} />
 
         <Stats />
 

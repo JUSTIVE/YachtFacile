@@ -12,7 +12,7 @@ export const SphereRenderer = (props: SphereRendererProps) => {
 
   const setACLAtom = useSetRecoilState(ACLAtom)
 
-  const [ref]: Api<Object3D<Event>> = useSphere(() => ({ args: [0.75], mass: 1, ...props }))
+  const [ref,api]: Api<Object3D<Event>> = useSphere(() => ({ args: [0.75], mass: 1, ...props }))
 
   useEffect(() => {
     aclRef.current = new Accelerometer({ frequency: 60 })
@@ -47,7 +47,7 @@ export const SphereRenderer = (props: SphereRendererProps) => {
 
       // console.log(prevAcl.current, e.target.x, e.target.y, e.target.z, diffAcl)
       setACLAtom(diffAcl)
-      // api.applyLocalForce(diffAcl, [0, 0, 0])
+      api.applyForce([0,0,-1], [0, 0, 0])
       // api.applyLocalForce([e.target.x * damper, e.target.y * damper * 10, e.target.z * damper], [0, 0, 0])
       prevAcl.current = {
         x: target.x??0 * intensity,
@@ -62,7 +62,7 @@ export const SphereRenderer = (props: SphereRendererProps) => {
       <mesh
         ref={(ref as unknown as Ref<Mesh<BufferGeometry, Material | Material[]>> | undefined)}
         castShadow
-        scale={prevAcl.current ? [prevAcl.current.x, prevAcl.current.y, prevAcl.current.z] : [1, 1, 1]}
+        // scale={prevAcl.current ? [prevAcl.current.x, prevAcl.current.y, prevAcl.current.z] : [1, 1, 1]}
       >
         <sphereGeometry />
         <meshNormalMaterial />

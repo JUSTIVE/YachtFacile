@@ -16,13 +16,13 @@ const  { nodes, materials } = (useGLTF('/dice.glb') as unknown as {nodes:any,mat
   // console.log(nodes, materials)
 
   const [ref, api] = useBox(() => ({
-    mass: 1,
+    mass: 0.01,
     args: [2, 2, 2],
     ...props
   }))
 
   useEffect(() => {
-    aclRef.current = new Accelerometer({ frequency: 60 })
+    aclRef.current = new Accelerometer({ frequency: 5 })
     aclRef.current.onerror = (event) => {
       if (event.error.name === 'NotAllowedError') {
         console.log('Permission to access sensor was denied.')
@@ -46,16 +46,16 @@ const  { nodes, materials } = (useGLTF('/dice.glb') as unknown as {nodes:any,mat
         }
         return
       }
-      const intensity = 50
+      const intensity = 1
       const diffAcl: Vec3Array = [
-        (prevAcl.current.x - (target.x??0)) * intensity,
-        Math.abs((prevAcl.current.y - (target.y??0)) * intensity),
-        (prevAcl.current.z - (target.z??0)) * intensity
+        -(prevAcl.current.x - (target.x??0)) * intensity,
+        Math.abs((prevAcl.current.y - (target.y??0)) * intensity*2),
+        -(prevAcl.current.z - (target.z??0)) * intensity
       ]
 
       // console.log(prevAcl.current, e.target.x, e.target.y, e.target.z, diffAcl)
       setACLAtom(diffAcl)
-      api.applyLocalForce(diffAcl, [0, 0, 0])
+      api.applyForce(diffAcl, [0, 0, 0])
       // api.applyLocalForce([e.target.x * damper, e.target.y * damper * 10, e.target.z * damper], [0, 0, 0])
       prevAcl.current = {
         x: target.x??0,
