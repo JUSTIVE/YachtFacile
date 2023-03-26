@@ -1,5 +1,5 @@
 import './App.css'
-import { Field } from './Field'
+import { Field } from './components/Field'
 import { RecoilRoot } from 'recoil'
 import { Logger } from './Logger'
 

@@ -8,7 +8,8 @@ export const Logger = () => {
   return (
     <div style={{ position: 'absolute' }}>
       {acl.map((item, i) => (
-        <div key={`${item}-${i}`}>{`${item}`}</div>
+        <div key={`${item}-${i}`}>{`${Math.round(item * 1000) / 1000}`}</div>
+        // <div key={`${item}-${i}`}>{`${item}`}</div>
       ))}
     </div>
   )
