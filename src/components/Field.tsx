@@ -4,7 +4,7 @@ import { Canvas } from '@react-three/fiber'
 import { Physics, Debug } from '@react-three/cannon'
 import { Stats, OrbitControls } from '@react-three/drei'
 import { EffectComposer, DepthOfField } from '@react-three/postprocessing'
-import { SphereRenderer } from './Sphere'
+// import { SphereRenderer } from './Sphere'
 import { DiceBox } from './DiceBox'
 import { DiceRenderer } from './Dice'
 
@@ -21,7 +21,7 @@ export const Field = () => {
           {/* <Debug> */}
           <DiceBox />
           {Array.from({ length: 5 }).map((_, i) => (
-            <DiceRenderer position={[Math.random()*5, 3, Math.random()*5]} key={`${i}-dice`} />
+            <DiceRenderer position={[(Math.random()-0.5)*5, 5, (Math.random()-0.5)*5]} rotation={[Math.random()*6,Math.random()*6,Math.random()*6]} key={`${i}-dice`} />
           ))}
           {/* <SphereRenderer position={[0, 5, 0]} /> */}
           {/* </Debug> */}
@@ -30,7 +30,7 @@ export const Field = () => {
 
         <Stats />
 
-        <EffectComposer multisampling={0}>
+        <EffectComposer multisampling={4}>
           <DepthOfField target={[0, 0, 10]} focalLength={0.4} bokehScale={5} height={700} />
         </EffectComposer>
       </Canvas>
