@@ -1,4 +1,4 @@
 import { Vec3Array } from "../util/vector";
 export type SphereRendererProps = {
-	position: Vec3Array;
+  position: Vec3Array;
 };

@@ -1,7 +1,7 @@
-import './App.css'
-import { Field } from './components/Field'
-import { RecoilRoot } from 'recoil'
-import { Logger } from './Logger'
+import "./App.css";
+import { Field } from "./components/Field";
+import { RecoilRoot } from "recoil";
+import { Logger } from "./Logger";
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <Field />
       <Logger />
     </RecoilRoot>
-  )
+  );
 }
 
-export default App
+export default App;

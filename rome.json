@@ -8,5 +8,9 @@
         "noUnusedVariables": "error"
       }
     }
+  },
+  "formatter": {
+    "indentSize": 2,
+    "indentStyle": "space"
   }
 }
