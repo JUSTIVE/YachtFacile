@@ -1,9 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import { DiceRenderer } from "../../.history/src/components/Dice_20230331184957";
-import { Vec3, Vec3Array } from "../util/vector";
+import { Vec3, Vec3Array, vec3 } from "../util/vector";
 import { useSetRecoilState } from "recoil";
 import { ACLAtom } from "../atom/acl";
 import { useBox } from "@react-three/cannon";
+import { Euler, Vector3 } from "three";
 
 export const Dices = () => {
 	const diceAmount = 5;
@@ -55,7 +56,10 @@ export const Dices = () => {
 			setACLAtom(diffAcl);
 
 			for (let i = 0; i < diceAmount; i++) {
-				dices[i][1].applyForce(diffAcl, [0, 0, 0]);
+        let velocity:Vector3 = new Vector3();
+        dices[i][1].velocity.copy(velocity);
+        if(vec3.magnitude(velocity)<=0.1)
+					dices[i][1].applyForce(diffAcl, [0, 0, 0]);
 			}
 
 			// api.applyLocalForce([e.target.x * damper, e.target.y * damper * 10, e.target.z * damper], [0, 0, 0])
