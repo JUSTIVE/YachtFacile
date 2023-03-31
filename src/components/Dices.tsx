@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { DiceRenderer } from "../../.history/src/components/Dice_20230331184957";
+import { DiceRenderer } from "./Dice";
 import { Vec3, Vec3Array, vec3 } from "../util/vector";
 import { useSetRecoilState } from "recoil";
 import { ACLAtom } from "../atom/acl";
