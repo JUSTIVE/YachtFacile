@@ -1,3 +1,1 @@
-export type DiceBoxProps = {
-    
-}
+export type DiceBoxProps = {};
