@@ -58,7 +58,7 @@ export const Dices = () => {
       for (let i = 0; i < diceAmount; i++) {
         const velocity: Vector3 = new Vector3();
         dices[i][1].velocity.copy(velocity);
-        if (vec3.magnitude(velocity) <= 0.1)
+        if (vec3.magnitude(velocity) === 0)
           dices[i][1].applyForce(diffAcl, [0, 0, 0]);
       }
 
