@@ -13,7 +13,7 @@ export const Dices = () => {
   const setACLAtom = useSetRecoilState(ACLAtom);
   const dices = Array.from({ length: diceAmount }).map((_) =>
     useBox(() => ({
-      mass: 0.01,
+      mass: 0.1,
       args: [2, 2, 2],
       position: [(Math.random() - 0.5) * 5, 10, (Math.random() - 0.5) * 5],
       rotation: [Math.random() * 6, Math.random() * 6, Math.random() * 6],
